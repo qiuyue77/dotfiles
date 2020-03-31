@@ -1,0 +1,71 @@
+" ===
+" === Basic Mappings
+" ===
+
+" Set <LEADER> as <SPACE>
+let mapleader=" "
+
+" Column (:) mods
+map ; :
+map q; q:
+map <LEADER>/ :!
+map <LEADER>r :r !
+map <LEADER>sr :%s/
+
+" Search
+noremap = nzz
+noremap - Nzz
+
+"     ^
+"     i
+" < j   l >
+"     k
+"     v
+" 正常模式
+noremap i k
+noremap k j
+noremap j h
+noremap h i
+noremap H I
+
+" I/E keys for 5 times i/e
+noremap I 5k
+noremap K 5j
+" J keys: go to the start of the line 
+noremap J 0
+" L keys: go to the end of the line 
+noremap L $
+" Faster in-line navigation
+noremap W 5w
+noremap B 5b
+
+" Ctrl + U or E will move up/down the view port without moving the cursor
+noremap <C-I> 5<C-y>
+noremap <C-K> 5<C-e>
+inoremap <C-I> <Esc>5<C-y>a
+inoremap <C-K> <Esc>5<C-e>a
+
+imap fj <Esc>
+vmap fj <Esc>
+
+map si :set nosplitbelow<CR>:split<CR>
+map sk :set splitbelow<CR>:split<CR>
+map sj :set nosplitright<CR>:vsplit<CR>
+map sl :set splitright<CR>:vsplit<CR>
+
+
+map <LEADER>i <C-w>k
+map <LEADER>k <C-w>j
+map <LEADER>j <C-w>h
+map <LEADER>l <C-w>l
+
+" Disabling the default s key
+map s <nop>
+" Save & Quit
+map S :w<CR>
+map Q :q<CR>
+
+" Press space twice to jump to the next '<++>' and edit it
+map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+
+

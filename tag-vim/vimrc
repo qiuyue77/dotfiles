@@ -20,6 +20,10 @@ let &t_ut=''
 " ===
 " === Main code display
 " ===
+" 取消行首行尾闪屏
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
 set number
 set relativenumber
 set ruler

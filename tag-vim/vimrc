@@ -1,0 +1,205 @@
+" ====================
+" === Editor Setup ===
+" ====================
+
+" ===
+" === System
+" ===
+set nocompatible
+" 文件检测
+filetype on
+filetype indent on
+filetype plugin on
+filetype plugin indent on
+"set mouse=a
+set encoding=utf-8
+
+" Prevent incorrect backgroung rendering
+let &t_ut=''
+
+" ===
+" === Main code display
+" ===
+set number
+set relativenumber
+set ruler
+set cursorline
+syntax enable
+syntax on
+set scrolloff=5  "距离顶部和底部5行
+
+" ===
+" === Editor behavior
+" ===
+" Better tab
+set expandtab  "tab替换为空格键
+set tabstop=4  "tab宽度
+set shiftwidth=4
+set softtabstop=4
+set autoindent  "自动缩进
+"set list
+"set listchars=tab:▸\ ,trail:▫
+
+" Prevent auto line aplit
+set wrap
+set tw=0
+
+set indentexpr=
+" Better backspace
+set backspace=indent,eol,start
+
+set foldmethod=indent
+set foldlevel=99
+" 光标在正常模式和编辑模式的不同显示
+"-----terminal 1 ---------
+"let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+"let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+"-----terminal 2 ---------
+let &t_SI.="\e[5 q"
+let &t_SR.="\e[3 q"
+let &t_EI.="\e[1 q"
+autocmd VimEnter * silent !echo -ne "\e[1 q"
+autocmd VimLeave * silent !echo -ne "\e[5 q"
+
+" ===
+" === Status/command bar
+" ===
+set laststatus=2
+set autochdir
+set showcmd
+set formatoptions-=tc
+
+" Show command autocomplete
+set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
+set wildmenu
+set wildmode=longest,list,full
+
+" Searching options
+set hlsearch
+exec "nohlsearch"
+set incsearch
+set ignorecase
+set smartcase
+set visualbell
+
+" ===
+" === Restore Cursor Position
+" ===
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" ===
+" === Basic Mappings
+" ===
+
+" Set <LEADER> as <SPACE>
+let mapleader=" "
+
+" Column (:) mods
+map ; :
+map q; q:
+map <LEADER>/ :!
+map <LEADER>r :r !
+map <LEADER>sr :%s/
+
+" Search
+noremap <LEADER><CR> :nohlsearch<CR>
+noremap = nzz
+noremap - Nzz
+
+" Adjacent duplicate words
+noremap <LEADER>fd /\(\<\w\+\>\)\_s*\1
+
+"     ^
+"     i
+" < j   l >
+"     k
+"     v
+" 正常模式
+noremap i k
+noremap k j
+noremap j h
+noremap h i
+noremap H I
+" 设置 Alt 键不映射到菜单栏
+set winaltkeys=no
+" 插入模式
+inoremap <M-i> <Up>
+inoremap <M-k> <Down>
+inoremap <M-j> <Left>
+inoremap <M-h> <Right>
+inoremap <C-a> <ESC>A
+
+" I/E keys for 5 times i/e
+noremap I 5k
+noremap K 5j
+" J keys: go to the start of the line 
+noremap J 0
+" L keys: go to the end of the line 
+noremap L $
+" Faster in-line navigation
+noremap W 5w
+noremap B 5b
+
+" Ctrl + U or E will move up/down the view port without moving the cursor
+noremap <C-I> 5<C-y>
+noremap <C-K> 5<C-e>
+inoremap <C-I> <Esc>5<C-y>a
+inoremap <C-K> <Esc>5<C-e>a
+
+imap fj <Esc>
+
+map si :set nosplitbelow<CR>:split<CR>
+map sk :set splitbelow<CR>:split<CR>
+map sj :set nosplitright<CR>:vsplit<CR>
+map sl :set splitright<CR>:vsplit<CR>
+
+" Resize splits with arrow keys
+map <up> :res +5<CR>
+map <down> :res -5<CR>
+map <left> :vertical resize-5<CR>
+map <right> :vertical resize+5<CR>
+
+" Place the two screens up and down
+noremap sh <C-w>t<C-w>K
+" Place the two screens side by side
+noremap sv <C-w>t<C-w>H
+
+" Rotate screens
+noremap srh <C-w>b<C-w>K
+noremap srv <C-w>b<C-w>H
+
+
+" ===
+" === Tab management
+" ===
+" Create a new tab with tu
+map ti :tabe<CR>
+" Move around tabs with tn and ti
+map tj :-tabnext<CR>
+map tl :+tabnext<CR>
+" Move the tabs with tmn and tmi
+map tmj :-tabmove<CR>
+map tml :+tabmove<CR>
+
+
+map <LEADER>i <C-w>k
+map <LEADER>k <C-w>j
+map <LEADER>j <C-w>h
+map <LEADER>l <C-w>l
+
+" Disabling the default s key
+map s <nop>
+" Save & Quit
+map S :w<CR>
+map Q :q<CR>
+
+" Press space twice to jump to the next '<++>' and edit it
+map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+
+" Spelling Check with <space>sc
+map <LEADER>sc :set spell!<CR>
+noremap <C-x> ea<C-x>s
+inoremap <C-x> <Esc>ea<C-x>s
+

@@ -174,6 +174,9 @@ export PATH="/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem
 # 为了使用 vscode 的 `code .`
 export PATH="/mnt/d/Program Files/Microsoft VS Code/bin:$PATH"
 
+# npm权限
+export PATH=~/.npm-global/bin:$PATH
+
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
